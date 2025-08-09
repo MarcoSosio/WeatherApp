@@ -1,12 +1,15 @@
 import "./searchBar.scss"
-import getWeather from "../services/getWeather";
-import { useContext } from "react";
-import Context from "../Context";
+import getWeather from "../../services/getWeather";
+import { useContext, useState } from "react";
+import Context from "../../Context";
 
 export default function SearchBar(){
+
     const context=useContext(Context)
-    const {cityState}=context;
-    const [city, setCity]=cityState
+    const {dataState}=context;
+    const [, setData]=dataState;
+
+    const [city, setCity] = useState();
 
     function handlerInsert(e){
         setCity(e.target.value)
@@ -14,7 +17,7 @@ export default function SearchBar(){
     
       function handlerSearch(){
         getWeather(city)
-        .then(result => console.log(result))
+        .then(result => {setData(result); console.log(result)}) //*provvisorio, debug
         .catch(()=>console.error("errore"))
       }
     return (

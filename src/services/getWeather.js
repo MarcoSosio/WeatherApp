@@ -5,11 +5,4 @@ export default function getWeather(cityParam) {
         fetch(url)
         .then(response => response.json())
     )
-    /* try {
-        const response = await fetch(url, options);
-        const result = await response.json();
-        return result
-    } catch (error) {
-        console.error(error);
-    } */
 }
