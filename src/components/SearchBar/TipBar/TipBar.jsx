@@ -1,20 +1,10 @@
 import "./TipBar.scss"
 
-export default function TipBar({tipCity, inputRef}){
-    function handlerAccept(){
-        inputRef.current.value=tipCity
-    }
-
+export default function TipBar({tipCity, acceptTip}){
 
     return (
-        <div onClick={handlerAccept} 
-        onKeyDown={
-            (e)=>{
-                e.key=="Enter" && handlerAccept();
-                console.log(e.key)
-            }
-        }>
-                {tipCity ? tipCity : 'notip'}
+        <div onClick={()=>acceptTip(tipCity)} style={{backgroundColor:"red"}}>
+            {tipCity ? tipCity : 'notip'}
         </div>
     ) 
     
