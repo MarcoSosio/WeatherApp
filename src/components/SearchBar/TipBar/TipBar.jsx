@@ -2,10 +2,11 @@ import "./TipBar.scss"
 
 export default function TipBar({tipCity, acceptTip}){
 
+    const isDisplayed=tipCity ? "unset" : "none"
     return (
-        <div onClick={()=>acceptTip(tipCity)} style={{backgroundColor:"red"}}>
-            {tipCity ? tipCity : 'notip'}
-        </div>
+        <button id="TipBar" onClick={()=>acceptTip(tipCity)} style={{display:isDisplayed}}>
+            {tipCity}
+        </button>
     ) 
     
 }

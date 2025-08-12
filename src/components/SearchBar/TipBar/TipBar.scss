@@ -1,0 +1,6 @@
+@use "../../../index.scss";
+#TipBar{
+    border: unset;
+    background-color: index.$bgcolor-tip-bar;
+    border-radius: index.$b-radius;
+}

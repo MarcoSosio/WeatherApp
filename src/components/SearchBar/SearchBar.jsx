@@ -28,7 +28,10 @@ export default function SearchBar() {
     }
 
     function searchTip(city){ //cerca il suggerimento
-        if (!city) return;
+        if (!city){
+            setTipCity("")
+            return;
+        } 
 
         getWeather(city)
             .then((result) => {
@@ -68,18 +71,24 @@ export default function SearchBar() {
     }
 
     return (
-        <>
-            <input
-                type="text"
-                onChange={handlerInsert}
-                placeholder="Search a city by name"
-                onKeyDown={handlerEnterKeyDown}
-                value={inputValue}
-            ></input>
-            <button onClick={handlerSearch} disabled={inputValue ? false : true}>
-                Cerca
-            </button>
+        <div id="SearchBar">
+                <input
+                    id="city-input"
+                    type="text"
+                    onChange={handlerInsert}
+                    placeholder="Search a city by name"
+                    onKeyDown={handlerEnterKeyDown}
+                    value={inputValue}
+                ></input>
+                <button
+                    id="search-button"
+                    onClick={handlerSearch}
+                    disabled={inputValue ? false : true}
+                >
+                    <img src="/searchIcon.svg" id="icon"></img>
+                </button>
+
             <TipBar tipCity={tipCity} acceptTip={acceptTip}></TipBar>
-        </>
+        </div>
     );
 }

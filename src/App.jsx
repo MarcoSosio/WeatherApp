@@ -8,16 +8,19 @@ function App() {
   const [data,setData]=useState();
 
   return (
-    <>
-      <Context value={{
-        dataState:[data,setData]
-      }}>
-
-        <SearchBar></SearchBar>
-        <MainInfo></MainInfo>
-      </Context>
-    </>
-  )
+      <div id="App">
+          <div id="container">
+              <Context
+                  value={{
+                      dataState: [data, setData],
+                  }}
+              >
+                  <SearchBar></SearchBar>
+                  <MainInfo></MainInfo>
+              </Context>
+          </div>
+      </div>
+  );
 }
 
 export default App

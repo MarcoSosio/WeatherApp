@@ -1,0 +1,23 @@
+#MainInfo{
+    width: 20vw; //provvisorio
+    display: flex;
+    flex-direction: column;
+    #container1{
+        display: flex;
+        #condition-icon{
+        width: 150px;
+        //border: 1px solid black;
+        margin-right: 10px;
+        }
+        #temp-c{
+            margin: 0;
+            align-self: center;
+            font-size: 2rem;
+        }
+    }
+    #condition-text{
+        text-align: center;
+        margin-top: 0;
+    }
+    
+}

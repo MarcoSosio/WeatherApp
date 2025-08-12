@@ -18,11 +18,18 @@ export default function MainInfo(){
             )
         }
         else if(data.current){
+            console.log(data)
             return (
-                <div>
-                    <img src={data.current.condition.icon} alt="Icona meteo" />
-                    <span>{data.current.condition.text}</span>
-                    <span>{data.current.temp_c}</span>
+                <div id="MainInfo">
+                    <div id="container1">
+                        <img
+                            src={data.current.condition.icon}
+                            alt="icon"
+                            id="condition-icon"
+                        />
+                        <p id="temp-c">{data.current.temp_c}</p>
+                    </div>
+                    <p id="condition-text">{data.current.condition.text}</p>
                 </div>
             );
         }
