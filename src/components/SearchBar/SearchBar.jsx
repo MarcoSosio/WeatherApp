@@ -1,6 +1,6 @@
 import './searchBar.scss';
 import getWeather from '../../services/getWeather';
-import { useContext, useState} from 'react';
+import { useContext, useRef, useState} from 'react';
 import Context from '../../Context';
 import TipBar from './tipBar/TipBar';
 
@@ -9,12 +9,13 @@ export default function SearchBar() {
     const { dataState } = context;
     const [, setData] = dataState;
 
+    const inputRef=useRef()
     const [inputValue, setInputValue] = useState(''); //valore input
     const [tipCity, setTipCity] = useState(''); //suggerimento
 
-    function searchCity(city) {
+    function searchCity(city) { //city=inputvalue || tipCity
         if (!city) return
-
+        
         getWeather(city)
             .then((result) => {
                 setData(result);
@@ -22,22 +23,29 @@ export default function SearchBar() {
                 // modifico il testo dell'input inserendo il risultato della ricerca
                 if (!result.error && city != result.location.name) {
                     setInputValue(result.location.name);
+                    inputRef.current.blur() //tolgo il focus
                 }
             })
             .catch((err) => console.error('Errore ' + err));
     }
 
-    function searchTip(city){ //cerca il suggerimento
-        if (!city){
-            setTipCity("")
+    function searchTip(city){ //city=inputValue
+        if (!city) {
+            setTipCity('');
             return;
-        } 
+        }
 
         getWeather(city)
             .then((result) => {
                 if (!result.error) {
                     setTipCity(result.location.name);
                 } else {
+                    setTipCity('');
+                }
+                if (
+                    result.location.name.toLowerCase() ===
+                    inputRef.current.value.toLowerCase()
+                ) {
                     setTipCity('');
                 }
             })
@@ -79,6 +87,8 @@ export default function SearchBar() {
                     placeholder="Search a city by name"
                     onKeyDown={handlerEnterKeyDown}
                     value={inputValue}
+                    ref={inputRef}
+                    autoComplete='off' //blocca i suggerimenti
                 ></input>
                 <button
                     id="search-button"
