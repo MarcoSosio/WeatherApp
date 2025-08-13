@@ -3,7 +3,8 @@
 #SearchBar{
     @include styles.style-main-blocks();
     display: grid;
-    grid-template-columns: 9fr 1fr;
+    column-gap: 10px;
+    grid-template-columns: auto max-content;
     grid-template-rows: auto auto; //sulla prima riga si adatta alle dimensioni dell'immagine del bottone ricerca
     #city-input{
         @include styles.b-search-input-button();
@@ -13,9 +14,7 @@
     }
     #search-button{
         @include styles.b-search-input-button();
-        margin: 10%;
-        margin-right: 0;
-        margin-left: 15px;
+        width: calc(30px + 3vw);
         border-radius: 50%;
         padding: 15%;
         background-color: styles.$bgcolor-search-input-button;
