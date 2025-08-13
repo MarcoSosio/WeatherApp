@@ -1,8 +1,10 @@
-body{
-    margin: 0;
-    background-color: skyblue;
+html{
+    font-size: 22px;
+    body{
+        margin: 0;
+        background-color: skyblue;
+    }
 }
-
 $bgcolor-search-input-button:rgba(255, 255, 255, 0.76);
 $bgcolor-tip-bar:rgba(255, 255, 255, 0.64);
 $b-radius: 10px;

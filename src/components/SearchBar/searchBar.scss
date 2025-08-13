@@ -2,7 +2,8 @@
 
 #SearchBar{
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 300px 50px;
+    grid-template-rows: 50px 25px;
     column-gap: 4px;
     row-gap: 10px;
     margin-top: 15px;
@@ -19,8 +20,7 @@
     #search-button{
         border: unset;
         border-radius: 50%;
-        width: 30px;
-        height: 30px;
+        margin: 5px;
         background-color: index.$bgcolor-search-input-button;
         img{
             width: 100%;

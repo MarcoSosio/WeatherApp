@@ -13,16 +13,18 @@ export default function SearchBar() {
     const [inputValue, setInputValue] = useState(''); //valore input
     const [tipCity, setTipCity] = useState(''); //suggerimento
 
+    const [hideTipBar, setHideTipBar]=useState(false);
+
     function searchCity(city) { //city=inputvalue || tipCity
         if (!city) return
         
         getWeather(city)
             .then((result) => {
-                setData(result);
-
+                setData(result); 
                 // modifico il testo dell'input inserendo il risultato della ricerca
                 if (!result.error && city != result.location.name) {
                     setInputValue(result.location.name);
+                    setHideTipBar(true)
                     inputRef.current.blur() //tolgo il focus
                 }
             })
@@ -42,12 +44,6 @@ export default function SearchBar() {
                 } else {
                     setTipCity('');
                 }
-                if (
-                    result.location.name.toLowerCase() ===
-                    inputRef.current.value.toLowerCase()
-                ) {
-                    setTipCity('');
-                }
             })
             .catch((err) => console.error('Errore ' + err));
     }
@@ -55,6 +51,7 @@ export default function SearchBar() {
     function acceptTip(tipCity) {
         if(tipCity){
             setInputValue(tipCity);
+            inputRef.current.focus();
         }
     }
 
@@ -63,6 +60,9 @@ export default function SearchBar() {
     function handlerInsert(e) {
         setInputValue(e.target.value);
         searchTip(e.target.value);
+        if(hideTipBar){
+            setHideTipBar(!hideTipBar)
+        }
     }
 
     // eslint-disable-next-line no-unused-vars
@@ -73,8 +73,7 @@ export default function SearchBar() {
 
     function handlerEnterKeyDown(e) {
         if (e.key === 'Enter') {
-            acceptTip(tipCity);
-            searchCity(tipCity);
+            searchCity(inputValue);
         }
     }
 
@@ -98,7 +97,7 @@ export default function SearchBar() {
                     <img src="/searchIcon.svg" id="icon"></img>
                 </button>
 
-            <TipBar tipCity={tipCity} acceptTip={acceptTip}></TipBar>
+            <TipBar tipCity={tipCity} acceptTip={acceptTip} hideTipBar={hideTipBar}></TipBar>
         </div>
     );
 }
