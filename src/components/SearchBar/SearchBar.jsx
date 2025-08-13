@@ -3,6 +3,7 @@ import getWeather from '../../services/getWeather';
 import { useContext, useRef, useState} from 'react';
 import Context from '../../Context';
 import TipBar from './tipBar/TipBar';
+import { TIP_BAR_STATES } from '../../constants';
 
 export default function SearchBar() {
     const context = useContext(Context);
@@ -13,7 +14,7 @@ export default function SearchBar() {
     const [inputValue, setInputValue] = useState(''); //valore input
     const [tipCity, setTipCity] = useState(''); //suggerimento
 
-    const [hideTipBar, setHideTipBar]=useState(false);
+    const [tipBarStatus, setTipBarStatus] = useState(TIP_BAR_STATES.VISIBLE);
 
     function searchCity(city) { //city=inputvalue || tipCity
         if (!city) return
@@ -21,10 +22,10 @@ export default function SearchBar() {
         getWeather(city)
             .then((result) => {
                 setData(result); 
+                setTipBarStatus(TIP_BAR_STATES.HIDDEN);
                 // modifico il testo dell'input inserendo il risultato della ricerca
                 if (!result.error && city != result.location.name) {
                     setInputValue(result.location.name);
-                    setHideTipBar(true)
                     inputRef.current.blur() //tolgo il focus
                 }
             })
@@ -41,7 +42,9 @@ export default function SearchBar() {
             .then((result) => {
                 if (!result.error) {
                     setTipCity(result.location.name);
+                    setTipBarStatus(TIP_BAR_STATES.VISIBLE)
                 } else {
+                    setTipBarStatus(TIP_BAR_STATES.NOTHING_FOUND)
                     setTipCity('');
                 }
             })
@@ -60,8 +63,8 @@ export default function SearchBar() {
     function handlerInsert(e) {
         setInputValue(e.target.value);
         searchTip(e.target.value);
-        if(hideTipBar){
-            setHideTipBar(!hideTipBar)
+        if(tipBarStatus==TIP_BAR_STATES.HIDDEN){
+            setTipBarStatus(TIP_BAR_STATES.VISIBLE)
         }
     }
 
@@ -97,7 +100,7 @@ export default function SearchBar() {
                     <img src="/searchIcon.svg" id="icon"></img>
                 </button>
 
-            <TipBar tipCity={tipCity} acceptTip={acceptTip} hideTipBar={hideTipBar}></TipBar>
+            <TipBar tipCity={tipCity} acceptTip={acceptTip} tipBarStatus={tipBarStatus}></TipBar>
         </div>
     );
 }
