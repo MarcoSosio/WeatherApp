@@ -8,35 +8,25 @@ export default function MainInfo(){
     const {dataState}=context
     const [data,]=dataState;
     
-    function displayInfo(){
-        if(!data){
-            return null
-        }
-        else if(data.error){
-            return (
-                <span>{data.error.message}</span>
-            )
-        }
-        else if(data.current){
-            console.log(data)
-            return (
+    return (
+        <>
+            {!data && null}
+            {data?.error && <span>{data.error.message}</span>}
+            {data?.current && (
                 <div id="MainInfo">
-                    <div id="container1">
+                    <div id="city-name">{data.location.name}</div>
+                    <div id="container-icon-temp">
                         <img
                             src={data.current.condition.icon}
                             alt="icon"
                             id="condition-icon"
                         />
-                        <p id="temp-c">{data.current.temp_c}</p>
+                        <div id="temp-c">{data.current.temp_c}</div>
                     </div>
-                    <p id="condition-text">{data.current.condition.text}</p>
+                    <div id="condition-text">{data.current.condition.text}</div>
                 </div>
-            );
-        }
-    }
-    return (
-        <div>
-            {displayInfo()}
-        </div>
+            )}
+        </>
     );
+
 }

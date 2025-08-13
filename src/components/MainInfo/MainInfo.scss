@@ -1,25 +1,34 @@
+@use "../../styles.scss";
+
 #MainInfo{
-    width: 20vw; //provvisorio
+    @include styles.style-main-blocks();
+    padding-top: 0;
     display: flex;
     flex-direction: column;
-    #container1{
+    #city-name{
+        font-size: 1.7rem;
+        text-align: center;
+        color: styles.$mainInfo-text-color;
+        text-shadow: 0 3px 3px black;
+    }
+    #container-icon-temp{
         display: flex;
+        justify-content: space-around;
+        align-items: center;
         #condition-icon{
-        width: 150px;
-        //border: 1px solid black;
-        margin-right: 10px;
+            width: 30%;
         }
         #temp-c{
-            margin: 0;
-            align-self: center;
             font-size: 2rem;
-            text-shadow: 4px 4px 10px black;
-            color: beige;
+            text-shadow: 5px 5px 10px styles.$text-shadow-color;
+            color: styles.$mainInfo-text-color;
         }
     }
     #condition-text{
+        font-size: 1.2rem;
+        color: styles.$mainInfo-text-color;
         text-align: center;
-        margin-top: 0;
+        text-shadow: 3px 3px 6px styles.$text-shadow-color;
     }
     
 }

@@ -1,23 +1,22 @@
 import './TipBar.scss';
 import { TIP_BAR_STATES } from '../../../constants';
 
-export default function TipBar({ tipCity, acceptTip, tipBarStatus }) {
+export default function TipBar({ tipCity, searchCity, tipBarStatus }) {
     return (
         <>
-            {(function () { //IIFE function
-                if (!tipCity || tipBarStatus == TIP_BAR_STATES.HIDDEN) {
-                    //se non ho trovato un suggerimento
-                    return null;
-                } else if (tipBarStatus == TIP_BAR_STATES.NOTHING_FOUND) {
-                    return <span>Nothing found</span>;
-                } else {
-                    return (
-                        <button id="TipBar" onClick={() => acceptTip(tipCity)}>
-                            {tipCity}
-                        </button>
-                    );
-                }
-            })()}
+            {/* Mostra Nothing found se lo stato è NOTHING_FOUND */}
+            {tipBarStatus === TIP_BAR_STATES.NOTHING_FOUND && (
+                <span>Nothing found</span>
+            )}
+
+            {/* Mostra il bottone se esiste tipCity e lo stato non è HIDDEN o NOTHING_FOUND */}
+            {tipCity &&
+                tipBarStatus !== TIP_BAR_STATES.HIDDEN &&
+                tipBarStatus !== TIP_BAR_STATES.NOTHING_FOUND && (
+                    <button id="TipBar" onClick={() => searchCity(tipCity)}>
+                        {tipCity}
+                    </button>
+                )}
         </>
     );
 }

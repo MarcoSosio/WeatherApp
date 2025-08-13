@@ -2,7 +2,7 @@ import './searchBar.scss';
 import getWeather from '../../services/getWeather';
 import { useContext, useRef, useState} from 'react';
 import Context from '../../Context';
-import TipBar from './tipBar/TipBar';
+import TipBar from './TipBar/TipBar';
 import { TIP_BAR_STATES } from '../../constants';
 
 export default function SearchBar() {
@@ -24,7 +24,7 @@ export default function SearchBar() {
                 setData(result); 
                 setTipBarStatus(TIP_BAR_STATES.HIDDEN);
                 // modifico il testo dell'input inserendo il risultato della ricerca
-                if (!result.error && city != result.location.name) {
+                if (!result.error && inputValue != result.location.name) {
                     setInputValue(result.location.name);
                     inputRef.current.blur() //tolgo il focus
                 }
@@ -51,12 +51,12 @@ export default function SearchBar() {
             .catch((err) => console.error('Errore ' + err));
     }
 
-    function acceptTip(tipCity) {
+    /* function acceptTip(tipCity) {
         if(tipCity){
             setInputValue(tipCity);
             inputRef.current.focus();
         }
-    }
+    } */
 
     //handlers
 
@@ -100,7 +100,7 @@ export default function SearchBar() {
                     <img src="/searchIcon.svg" id="icon"></img>
                 </button>
 
-            <TipBar tipCity={tipCity} acceptTip={acceptTip} tipBarStatus={tipBarStatus}></TipBar>
+            <TipBar tipCity={tipCity} searchCity={searchCity} tipBarStatus={tipBarStatus}></TipBar>
         </div>
     );
 }

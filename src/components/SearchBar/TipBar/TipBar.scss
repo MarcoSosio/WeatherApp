@@ -1,7 +1,9 @@
-@use "../../../index.scss";
+@use "../../../styles.scss";
 #TipBar{
     border: unset;
-    background-color: index.$bgcolor-tip-bar;
-    border-radius: index.$b-radius;
-    font-size: 0.7rem
+    background-color: styles.$bgcolor-tip-bar;
+    border-radius: styles.$b-radius;
+    font-size: 0.7rem;
+    height: calc(20px + 1vw);
+    margin-top: 20px;
 }
