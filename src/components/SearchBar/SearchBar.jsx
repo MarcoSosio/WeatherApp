@@ -3,7 +3,8 @@ import getWeather from '../../services/getWeather';
 import { useContext, useRef, useState} from 'react';
 import Context from '../../Context';
 import TipBar from './TipBar/TipBar';
-import { TIP_BAR_STATES } from '../../constants';
+import { TIP_BAR_STATES } from '../../constants/constants.js';
+import searchIcon from  "./assets/searchIcon.svg";
 
 export default function SearchBar() {
     const context = useContext(Context);
@@ -51,15 +52,6 @@ export default function SearchBar() {
             .catch((err) => console.error('Errore ' + err));
     }
 
-    /* function acceptTip(tipCity) {
-        if(tipCity){
-            setInputValue(tipCity);
-            inputRef.current.focus();
-        }
-    } */
-
-    //handlers
-
     function handlerInsert(e) {
         setInputValue(e.target.value);
         searchTip(e.target.value);
@@ -82,25 +74,29 @@ export default function SearchBar() {
 
     return (
         <div id="SearchBar">
-                <input
-                    id="city-input"
-                    type="text"
-                    onChange={handlerInsert}
-                    placeholder="Search a city by name"
-                    onKeyDown={handlerEnterKeyDown}
-                    value={inputValue}
-                    ref={inputRef}
-                    autoComplete='off' //blocca i suggerimenti
-                ></input>
-                <button
-                    id="search-button"
-                    onClick={handlerSearch}
-                    disabled={inputValue ? false : true}
-                >
-                    <img src="/searchIcon.svg" id="icon"></img>
-                </button>
+            <input
+                id="city-input"
+                type="text"
+                onChange={handlerInsert}
+                placeholder="Search a city by name"
+                onKeyDown={handlerEnterKeyDown}
+                value={inputValue}
+                ref={inputRef}
+                autoComplete="off" //blocca i suggerimenti
+            ></input>
+            <button
+                id="search-button"
+                onClick={handlerSearch}
+                disabled={inputValue ? false : true}
+            >
+                <img src={searchIcon} id="icon"></img>
+            </button>
 
-            <TipBar tipCity={tipCity} searchCity={searchCity} tipBarStatus={tipBarStatus}></TipBar>
+            <TipBar
+                tipCity={tipCity}
+                searchCity={searchCity}
+                tipBarStatus={tipBarStatus}
+            ></TipBar>
         </div>
     );
 }

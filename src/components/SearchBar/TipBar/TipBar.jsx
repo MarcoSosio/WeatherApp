@@ -1,5 +1,5 @@
 import './TipBar.scss';
-import { TIP_BAR_STATES } from '../../../constants';
+import { TIP_BAR_STATES } from '../../../constants/constants.js';
 
 export default function TipBar({ tipCity, searchCity, tipBarStatus }) {
     return (
