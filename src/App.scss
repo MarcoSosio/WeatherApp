@@ -1,8 +1,10 @@
+@use "./styles/functions.scss" as f;
+
 #App{ 
     display: flex;
     flex-direction: column;
     margin: 20px;
-    width: calc(250px + 18vw); // 15px/1vw
+    width: f.px-and-vw(300px);
     button:hover{
         border: 1px solid black !important;
     }

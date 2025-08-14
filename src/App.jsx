@@ -17,6 +17,7 @@ function App() {
                 <SearchBar></SearchBar>
                 <MainInfo></MainInfo>
             </Context>
+            {/* <div style={{width:"3000px", height:"100px", backgroundColor:"red" }}></div> */}
         </div>
     );
 }

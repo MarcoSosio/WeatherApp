@@ -1,14 +1,14 @@
-@use "../../styles.scss";
+@use "../../styles/main.scss" as m;
 
 #MainInfo{
-    @include styles.style-main-blocks();
+    @include m.style-main-blocks();
     padding-top: 0;
     display: flex;
     flex-direction: column;
     #city-name{
         font-size: 1.7rem;
         text-align: center;
-        color: styles.$mainInfo-text-color;
+        color: m.$mainInfo-text-color;
         text-shadow: 0 3px 3px black;
     }
     #container-icon-temp{
@@ -20,15 +20,15 @@
         }
         #temp-c{
             font-size: 2rem;
-            text-shadow: 5px 5px 10px styles.$text-shadow-color;
-            color: styles.$mainInfo-text-color;
+            text-shadow: 5px 5px 10px m.$text-shadow-color;
+            color: m.$mainInfo-text-color;
         }
     }
     #condition-text{
         font-size: 1.2rem;
-        color: styles.$mainInfo-text-color;
+        color: m.$mainInfo-text-color;
         text-align: center;
-        text-shadow: 3px 3px 6px styles.$text-shadow-color;
+        text-shadow: 3px 3px 6px m.$text-shadow-color;
     }
     
 }

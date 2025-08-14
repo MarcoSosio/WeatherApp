@@ -1,0 +1,7 @@
+@use 'sass:math';
+
+@function px-and-vw($px) {
+    $rapporto-px-vw: math.div(30px, 1vw); // px/vw=30 vw=px/30 30vw=px
+    $vw:math.div($px, $rapporto-px-vw);
+    @return calc($px + $vw);
+}

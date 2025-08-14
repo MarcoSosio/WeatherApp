@@ -1,23 +1,23 @@
-@use "../../styles.scss";
+@use "../../styles/main" as m;
 
 #SearchBar{
-    @include styles.style-main-blocks();
+    @include m.style-main-blocks();
     display: grid;
     column-gap: 10px;
     grid-template-columns: auto max-content;
     grid-template-rows: auto auto; //sulla prima riga si adatta alle dimensioni dell'immagine del bottone ricerca
     #city-input{
-        @include styles.b-search-input-button();
-        border-radius: styles.$b-radius;
-        background-color: styles.$bgcolor-search-input-button;
+        @include m.border-search-input-button();
+        border-radius: m.$b-radius;
+        background-color: m.$bgcolor-search-input-button;
         font: inherit;
     }
     #search-button{
-        @include styles.b-search-input-button();
-        width: calc(30px + 1vw);
+        @include m.border-search-input-button();
+        width: m.px-and-vw(30px);
         border-radius: 50%;
         padding: 15%;
-        background-color: styles.$bgcolor-search-input-button;
+        background-color: m.$bgcolor-search-input-button;
         img{
             width: 100%;
             height: 100%;

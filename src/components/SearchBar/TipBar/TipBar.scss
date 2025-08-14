@@ -1,8 +1,8 @@
-@use "../../../styles.scss";
+@use "../../../styles/main" as m;
 #TipBar{
     border: unset;
-    background-color: styles.$bgcolor-tip-bar;
-    border-radius: styles.$b-radius;
+    background-color: m.$bgcolor-tip-bar;
+    border-radius: m.$b-radius;
     font-size: 0.7rem;
     height: calc(20px + 1vw);
     margin-top: 20px;

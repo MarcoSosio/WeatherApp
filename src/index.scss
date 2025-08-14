@@ -1,12 +1,14 @@
+@use "./styles/functions" as f;
+
 html{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: calc(20px + 0.8vw);
-    #root{
-        display: flex;
-        justify-content: center;
-    }
+    font-size: f.px-and-vw(16px);
+    background-color: skyblue;
     body{
         margin: 0;
-        background-color: skyblue;
+        #root{
+            display: flex;
+            justify-content: center;
+        }
     }
 }
